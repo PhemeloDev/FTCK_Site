@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FTCK - IT Solutions</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      body {
+        background-color: #1e0936;
+        color: #ffffff;
+        overflow-y: overlay;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(108, 60, 224, 0.5) transparent;
+      }
+      .navbar {
+        background-color: transparent !important;
+      }
+      .navbar-light .navbar-nav .nav-link {
+        color: #ffffff;
+      }
+      .jumbotron {
+        background-image: url("images/slide1.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 0; /* Remove padding since we're using flex centering */
+        position: relative;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+
+      .jumbotron .display-4 {
+        font-weight: 700; /* Makes the heading extra bold */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: adds subtle text shadow for better readability */
+      }
+
+      .jumbotron .lead {
+        font-weight: 600; /* Makes the paragraph text semi-bold */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      .fade-in {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+      .fade-in.appear {
+        opacity: 1;
+      }
+      .card {
+        background-color: #2a0f4c;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      .btn-primary {
+        background-color: #6c3ce0;
+        border-color: #6c3ce0;
+      }
+      .btn-outline-light {
+        border-color: #ffffff;
+        animation: bounce 2s infinite, glow 1.5s ease-in-out infinite alternate;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-outline-light:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 5px #fff,
+                      0 0 10px #fff,
+                      0 0 15px #fff;
+        }
+        to {
+          box-shadow: 0 0 10px #fff,
+                      0 0 20px #fff,
+                      0 0 30px #fff;
+        }
+      }
+      .btn-outline-light::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+      }
+      @keyframes shine {
+        from {
+          transform: translateX(-100%) rotate(45deg);
+        }
+        to {
+          transform: translateX(100%) rotate(45deg);
+        }
+      }
+      .testimonial-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .abstract-shape {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40%;
+        height: auto;
+        opacity: 0.7;
+      }
+      .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #6c3ce0;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .scroll-to-top:hover {
+        background: #5630b8;
+        transform: translateY(-3px);
+      }
+
+      .scroll-to-top.visible {
+        display: flex;
+      }
+
+      .carousel-item {
+        transition: transform 1.2s ease-in-out;
+      }
+      
+      .carousel-item h1,
+      .carousel-item p {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease-out;
+      }
+      
+      .carousel-item.active h1 {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .carousel-item.active p {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.2s;
+      }
+
+      .service-image {
+        width: 100%;
+        height: 200px; /* Adjust height as needed */
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .card {
+        background-color: #2a0f4c;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+      }
+
+      .card-title {
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      .card-text {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .collapse {
+        transition: all 0.3s ease-out;
+      }
+
+      .collapse.show {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Testimonial Carousel Styles */
+      #testimonialCarousel {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .carousel-item {
+        transition: transform .6s ease-in-out;
+      }
+
+      .testimonial-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto;
+      }
+
+      /* Style the navigation arrows */
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(108, 60, 224, 0.5);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .carousel-control-prev {
+        left: -25px;
+      }
+
+      .carousel-control-next {
+        right: -25px;
+      }
+
+      .carousel-control-prev:hover,
+      .carousel-control-next:hover {
+        background-color: rgba(108, 60, 224, 0.8);
+      }
+
+      /* Hide arrows on mobile */
+      @media (max-width: 768px) {
+        .carousel-control-prev,
+        .carousel-control-next {
+          display: none;
+        }
+      }
+
+      /* Make sure the card is centered */
+      .card {
+        margin: 0 auto;
+        max-width: 600px;
+      }
+
+      /* Add fade effect to testimonials */
+      .carousel-item {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .carousel-item.active {
+        opacity: 1;
+      }
+
+      /* Webkit scrollbar styling (Chrome, Safari, newer Edge) */
+      ::-webkit-scrollbar {
+        width: 8px; /* Thin scrollbar */
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent; /* Transparent track */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: rgba(108, 60, 224, 0.5);
+        border-radius: 20px;
+        border: transparent;
+      }
+
+      /* Hover effect on scrollbar */
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(108, 60, 224, 0.8);
+      }
+
+      /* Ensure containers take full width on mobile */
+      @media (max-width: 768px) {
+        .container {
+          max-width: 100% !important;
+          padding-left: 15px !important;
+          padding-right: 15px !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+        
+        /* Adjust any fixed-width elements */
+        #testimonialCarousel,
+        .card {
+          max-width: 100% !important;
+        }
+      }
+
+      /* Ensure content goes edge to edge */
+      .jumbotron,
+      .container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+
+      .contact-section {
+        background-color: #2a0f4c; /* Complementary purple shade */
+      }
+
+      .contact-card {
+        background: rgba(108, 60, 224, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid rgba(108, 60, 224, 0.2);
+      }
+
+      .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background: rgba(108, 60, 224, 0.15);
+      }
+
+      .contact-icon {
+        font-size: 2.5rem;
+        color: #6c3ce0;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .contact-card:hover .contact-icon {
+        transform: scale(1.1);
+      }
+
+      .contact-link {
+        color: #6c3ce0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .contact-link:hover {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      .contact-link i {
+        transition: transform 0.3s ease;
+      }
+
+      .contact-link:hover i {
+        transform: translateX(5px);
+      }
+
+      h5 {
+        color: #ffffff;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand text-white" href="#">FTCK</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#testimonials">Testimonials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron" id="home">
+      <div
+        class="container h-100 d-flex align-items-center justify-content-center"
+      >
+        <div class="text-center">
+          <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <!-- Slide 1 -->
+              <div class="carousel-item active">
+                <h1 class="display-4 fade-in fw-bold">
+                  Transform your ideas into digital reality
+                </h1>
+                <p class="lead fade-in fw-semibold">
+                  Innovative solutions for tomorrow's challenges
+                </p>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-item">
+                <h1 class="display-4 fade-in fw-bold">
+                  Crafting digital experiences that inspire
+                </h1>
+                <p class="lead fade-in fw-semibold">
+                  Where creativity meets technology
+                </p>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="carousel-item">
+                <h1 class="display-4 fade-in fw-bold">
+                  Building the future, one pixel at a time
+                </h1>
+                <p class="lead fade-in fw-semibold">
+                  Your vision, our expertise
+                </p>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="carousel-item">
+                <h1 class="display-4 fade-in fw-bold">
+                  Elevate your business with smart technology
+                </h1>
+                <p class="lead fade-in fw-semibold">
+                  Empowering growth through innovation
+                </p>
+              </div>
+            </div>
+          </div>
+          <a href="#services" class="btn btn-outline-light btn-lg mt-3"
+            >Our Services</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-5" id="services">
+      <h2 class="text-center mb-4" data-aos="fade-up">Our Services</h2>
+      <div class="row">
+        <!-- Mobile Development Card -->
+        <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-4">Mobile Development</h5>
+              <img src="images/mobile.jpg" alt="Mobile Development" class="service-image mb-4">
+              <p class="card-text">
+                We create cutting-edge mobile applications for iOS and Android platforms.
+              </p>
+              <p class="card-text collapse" id="mobileDev">
+                Our expert team utilizes the latest technologies to build responsive, user-friendly, and feature-rich mobile apps tailored to your specific needs. From concept to deployment, we ensure a seamless development process.
+              </p>
+              <a href="#" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#mobileDev">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web Development Card -->
+        <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-4">Web Development</h5>
+              <img src="images/web.jpg" alt="Web Development" class="service-image mb-4">
+              <p class="card-text">
+                Our team builds responsive and dynamic websites tailored to your needs.
+              </p>
+              <p class="card-text collapse" id="webDev">
+                We specialize in creating modern, scalable web applications using the latest frameworks and technologies. Our solutions are designed to provide optimal user experience across all devices and platforms.
+              </p>
+              <a href="#" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#webDev">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cloud Integration Card -->
+        <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-4">Cloud Integration</h5>
+              <img src="images/cloud.jpg" alt="Cloud Integration" class="service-image mb-4">
+              <p class="card-text">
+                We provide seamless cloud integration solutions for your business.
+              </p>
+              <p class="card-text collapse" id="cloudInt">
+                Our cloud integration services help businesses leverage the power of cloud computing. We offer migration, setup, and management of cloud infrastructure, ensuring optimal performance, security, and scalability.
+              </p>
+              <a href="#" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#cloudInt">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- New AI Bots Development Card -->
+        <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-4">AI Bots Development</h5>
+              <img src="images/whatsapp-telegram.jpg" alt="AI Bots Development" class="service-image mb-4">
+              <p class="card-text">
+                We create fully automated AI bots for WhatsApp and Telegram.
+              </p>
+              <p class="card-text collapse" id="aiBotsDev">
+                These bots can learn from your company data and escalate to human support when needed, ensuring seamless communication and efficiency.
+              </p>
+              <a href="#" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#aiBotsDev">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Bug Fixing Service Card -->
+        <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="500">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-4">Bug Fixing Service</h5>
+              <img src="images/bugs.jpg" alt="Bug Fixing Service" class="service-image mb-4">
+              <p class="card-text">
+                We specialize in identifying and fixing bugs in existing systems to ensure smooth operation.
+              </p>
+              <p class="card-text collapse" id="bugFixing">
+                Our bug-fixing service is billed hourly, providing you with flexible and efficient solutions tailored to your needs. We prioritize quick turnaround times and thorough testing to ensure your systems run flawlessly.
+              </p>
+              <a href="#" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#bugFixing">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container my-5" id="clients">
+      <h2 class="text-center mb-5" data-aos="fade-up">Our Clients</h2>
+      <div class="row align-items-center justify-content-center">
+        <div
+          class="col-md-2 col-6 mb-4"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div class="client-logo">
+            <img src="images/mateme.png" alt="ML Mateme Attorneys" class="img-fluid" />
+          </div>
+        </div>
+        <div
+          class="col-md-2 col-6 mb-4"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="client-logo">
+            <img src="images/coj.png" alt="City Of Johannesburg" class="img-fluid" />
+          </div>
+        </div>
+        <!-- <div
+          class="col-md-2 col-6 mb-4"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div class="client-logo">
+            <img src="client3-logo.png" alt="Client 3" class="img-fluid" />
+          </div>
+        </div>
+        <div
+          class="col-md-2 col-6 mb-4"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <div class="client-logo">
+            <img src="client4-logo.png" alt="Client 4" class="img-fluid" />
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="container my-5" id="testimonials">
+      <h2 class="text-center mb-4" data-aos="fade-up">Testimonials</h2>
+      
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Testimonial 1 -->
+          <div class="carousel-item active">
+            <div class="card">
+              <div class="card-body text-center">
+                <img src="images/mateme face.png" alt="Client 1" class="testimonial-img mb-3">
+                <h5 class="card-title">Lekoko Mateme</h5>
+                <p class="card-text">
+                  "Working with FTCK was a game-changer for our startup. Their mobile app development team didn't just meet our expectations - they blew them away! The app has been running smoothly since day one."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="carousel-item">
+            <div class="card">
+              <div class="card-body text-center">
+                <img src="images/henk.jpg" alt="Client 2" class="testimonial-img mb-3">
+                <h5 class="card-title">Henk Blaauw</h5>
+                <p class="card-text">
+                  "I can't say enough good things about FTCK's web team. They took time to understand our vision and created exactly what we needed. Our customers love the new site, and our online sales have doubled!"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="carousel-item">
+            <div class="card">
+              <div class="card-body text-center">
+                <img src="images/mike.png" alt="Client 3" class="testimonial-img mb-3">
+                <h5 class="card-title">Mike Thompson</h5>
+                <p class="card-text">
+                  "Switching to cloud services seemed daunting at first, but FTCK made it seamless. Their team was there every step of the way, and now our team can work from anywhere. Best decision we've made for our business!"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="contact-section py-5" id="contact">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Contact Us</h2>
+            <div class="row g-4">
+                <!-- Address Card -->
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h5>Address</h5>
+                        <p>135 Oakmont, Jackal Creek Golf Estate</p>
+                        <a href="https://www.google.com/maps/place/135+Oakmont,+Jackal+Creek+Golf+Estate,+Roodepoort,+2169/@-26.0586722,27.9267036,17z/data=!3m1!4b1!4m6!3m5!1s0x1e9575f8435dc165:0xdb3695ed7b2a05df!8m2!3d-26.0586722!4d27.9267036!16s%2Fg%2F11csh3ffd5?entry=ttu&g_ep=EgoyMDI1MDEwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="contact-link">
+                            Get Directions <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info Card -->
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h5>Contact Information</h5>
+                        <p>
+                            <a href="mailto:info@ftck.co.za" class="contact-link">
+                                <i class="fas fa-envelope-open me-2"></i>info@ftck.co.za
+                            </a>
+                        </p>
+                        <p>
+                            <a href="tel:0710840814" class="contact-link">
+                                <i class="fas fa-phone me-2"></i>071 084 0814
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light text-center py-3">
+      <div class="container">
+        <p>&copy; 2023 FTCK. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <button id="scrollToTop" class="scroll-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+
+      // Add smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Fade in effect for jumbotron
+      window.addEventListener("load", () => {
+        const fadeElements = document.querySelectorAll(".fade-in");
+        fadeElements.forEach((element) => {
+          element.classList.add("appear");
+        });
+      });
+
+      const scrollToTopBtn = document.getElementById("scrollToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add("visible");
+        } else {
+          scrollToTopBtn.classList.remove("visible");
+        }
+      });
+
+      scrollToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Initialize the carousel with custom settings
+      const heroCarousel = new bootstrap.Carousel(document.getElementById('heroCarousel'), {
+        interval: 5000, // Change slides every 5 seconds
+        pause: 'hover', // Pause on mouse hover
+        ride: 'carousel',
+        wrap: true // Continue from last to first slide
+      });
+
+      // Initialize the carousel with custom settings
+      const testimonialCarousel = new bootstrap.Carousel(document.getElementById('testimonialCarousel'), {
+        interval: 5000, // Change slides every 5 seconds
+        wrap: true, // Continue from last to first slide
+        pause: 'hover' // Pause on mouse hover
+      });
+    </script>
+  </body>
+</html>
