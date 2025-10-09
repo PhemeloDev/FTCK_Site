@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLG - Pula Legacy Group</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+      body {
+        background-color: #1a1a2e;
+        color: #ffffff;
+        overflow-y: overlay;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(16, 213, 194, 0.5) transparent;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      .navbar {
+        background-color: rgba(26, 26, 46, 0.95) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(16, 213, 194, 0.1);
+      }
+      
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.8rem;
+      }
+      
+      .navbar-light .navbar-nav .nav-link {
+        color: #ffffff;
+        font-weight: 500;
+        margin: 0 10px;
+      }
+      
+      .navbar-light .navbar-nav .nav-link:hover {
+        color: #10d5c2;
+      }
+      
+      .hero-section {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+      
+      .hero-content {
+        max-width: 600px;
+      }
+      
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #ffffff 0%, #10d5c2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 3rem;
+        line-height: 1.6;
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, #10d5c2 0%, #0ea5e9 100%);
+        border: none;
+        padding: 15px 40px;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: transform 0.3s ease;
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(16, 213, 194, 0.3);
+      }
+      
+      .section-padding {
+        padding: 80px 0;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+      
+      .service-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(16, 213, 194, 0.1);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+        backdrop-filter: blur(10px);
+      }
+      
+      .service-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(16, 213, 194, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+      
+      .service-icon {
+        font-size: 3rem;
+        color: #10d5c2;
+        margin-bottom: 2rem;
+      }
+      
+      .service-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+      
+      .service-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+      }
+      
+      .about-section {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      
+      .about-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 2rem;
+      }
+      
+      .diversity-badge {
+        display: inline-flex;
+        align-items: center;
+        background: linear-gradient(135deg, #10d5c2 0%, #0ea5e9 100%);
+        padding: 10px 25px;
+        border-radius: 50px;
+        margin: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(16, 213, 194, 0.1);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .testimonial-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 2rem;
+        border: 3px solid #10d5c2;
+      }
+      
+      .contact-section {
+        background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+      }
+      
+      .contact-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(16, 213, 194, 0.1);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+      }
+      
+      .contact-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(16, 213, 194, 0.3);
+      }
+      
+      .contact-icon {
+        font-size: 2.5rem;
+        color: #10d5c2;
+        margin-bottom: 2rem;
+      }
+      
+      .contact-link {
+        color: #10d5c2;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      
+      .contact-link:hover {
+        color: #ffffff;
+      }
+      
+      footer {
+        background-color: #0f0f1e;
+        border-top: 1px solid rgba(16, 213, 194, 0.1);
+      }
+      
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      
+      .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #10d5c2 0%, #0ea5e9 100%);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+      
+      .scroll-to-top:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(16, 213, 194, 0.3);
+      }
+      
+      .scroll-to-top.visible {
+        display: flex;
+      }
+      
+      /* Webkit scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background-color: rgba(16, 213, 194, 0.5);
+        border-radius: 20px;
+        border: transparent;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(16, 213, 194, 0.8);
+      }
+      
+      .client-logo {
+        transition: transform 0.3s ease;
+      }
+      
+      .client-logo:hover {
+        transform: translateY(-5px);
+      }
+      
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+        
+        .section-padding {
+          padding: 60px 0;
+        }
+        
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <div class="logo-container">
+          <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- PLG Logo -->
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10d5c2;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            
+            <!-- P -->
+            <path d="M15 20 L15 80 L10 80 L10 20 L35 20 Q45 20 45 30 Q45 40 35 40 L15 40" fill="url(#logoGradient)" stroke="none"/>
+            
+            <!-- L -->
+            <path d="M55 20 L55 75 L75 75 L75 80 L50 80 L50 20" fill="url(#logoGradient)" stroke="none"/>
+            
+            <!-- G -->
+            <path d="M85 30 Q95 20 95 35 L95 55 Q95 80 75 80 Q65 80 65 65 L65 50 L80 50 L80 55 L70 55 L70 65 Q70 75 75 75 Q90 75 90 55 L90 35 Q90 25 85 30" fill="url(#logoGradient)" stroke="none"/>
+            
+            <!-- Decorative elements -->
+            <circle cx="25" cy="10" r="3" fill="url(#logoGradient)" opacity="0.6"/>
+            <circle cx="75" cy="10" r="2" fill="url(#logoGradient)" opacity="0.4"/>
+            <circle cx="90" cy="90" r="2" fill="url(#logoGradient)" opacity="0.6"/>
+          </svg>
+          <a class="navbar-brand text-white" href="#">PLG</a>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <div class="hero-content" data-aos="fade-right">
+              <h1 class="hero-title">
+                Building Tomorrow's
+                <br>Digital Solutions
+              </h1>
+              <p class="hero-subtitle">
+                Pula Legacy Group delivers innovative technology solutions that transform businesses and empower growth through cutting-edge digital experiences.
+              </p>
+              <a href="#services" class="btn btn-primary btn-lg">Explore Our Services</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding" id="services">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h3 class="service-title">Mobile Development</h3>
+              <p class="service-description">
+                Cutting-edge mobile applications for iOS and Android platforms, designed for performance and user experience.
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <h3 class="service-title">Web Development</h3>
+              <p class="service-description">
+                Responsive and dynamic websites tailored to your business needs, built with modern technologies.
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-cloud"></i>
+              </div>
+              <h3 class="service-title">Cloud Solutions</h3>
+              <p class="service-description">
+                Seamless cloud integration and migration services that scale with your business growth.
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <h3 class="service-title">AI Bots Development</h3>
+              <p class="service-description">
+                Fully automated AI bots for WhatsApp and Telegram that learn from your company data and escalate to human support when needed.
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-bug"></i>
+              </div>
+              <h3 class="service-title">Bug Fixing Service</h3>
+              <p class="service-description">
+                Specialized in identifying and fixing bugs in existing systems to ensure smooth operation. Billed hourly for flexible solutions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding" id="clients" style="background: rgba(255, 255, 255, 0.02);">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Our Clients</h2>
+        <div class="row align-items-center justify-content-center g-4">
+          <div class="col-md-4 col-6 text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="client-logo" style="padding: 50px; border-radius: 15px; background: rgba(255, 255, 255, 0.05); transition: transform 0.3s ease; height: 300px; display: flex; align-items: center; justify-content: center;">
+              <img src="images/mateme.png" alt="ML Mateme Attorneys" class="img-fluid" style="max-height: 200px; filter: brightness(1.2);" />
+            </div>
+          </div>
+          <div class="col-md-4 col-6 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="client-logo" style="padding: 50px; border-radius: 15px; background: rgba(255, 255, 255, 0.05); transition: transform 0.3s ease; height: 300px; display: flex; align-items: center; justify-content: center;">
+              <img src="images/coj.png" alt="City Of Johannesburg" class="img-fluid" style="max-height: 200px; filter: brightness(1.2);" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section section-padding" id="about">
+      <div class="container">
+        <div class="about-content" data-aos="fade-up">
+          <h2 class="section-title">About Pula Legacy Group</h2>
+          <p class="about-text">
+            Pula Legacy Group is a proudly South African technology company committed to delivering exceptional digital solutions. We combine innovation with expertise to help businesses thrive in the digital age.
+          </p>
+          <div class="mt-4">
+            <span class="diversity-badge">
+              <i class="fas fa-users me-2"></i>
+              100% Black Owned
+            </span>
+            <span class="diversity-badge">
+              <i class="fas fa-female me-2"></i>
+              50% Black Female Ownership
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding" id="testimonials">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
+        
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="testimonial-card" data-aos="fade-up">
+                <img src="images/mateme face.png" alt="Lekoko Mateme" class="testimonial-img">
+                <h5>Lekoko Mateme</h5>
+                <p class="mt-3">
+                  "Working with PLG was a game-changer for our startup. Their mobile app development team didn't just meet our expectations - they exceeded them!"
+                </p>
+              </div>
+            </div>
+            
+            <div class="carousel-item">
+              <div class="testimonial-card" data-aos="fade-up">
+                <img src="images/henk.jpg" alt="Henk Blaauw" class="testimonial-img">
+                <h5>Henk Blaauw</h5>
+                <p class="mt-3">
+                  "PLG's web development team understood our vision perfectly. Our customers love the new site, and our online sales have doubled!"
+                </p>
+              </div>
+            </div>
+            
+            <div class="carousel-item">
+              <div class="testimonial-card" data-aos="fade-up">
+                <img src="images/mike.png" alt="Mike Thompson" class="testimonial-img">
+                <h5>Mike Thompson</h5>
+                <p class="mt-3">
+                  "PLG made our cloud migration seamless. Their team was there every step of the way. Best decision we've made for our business!"
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section section-padding" id="contact">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-5" data-aos="fade-right">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h5>Email Us</h5>
+              <p>
+                <a href="mailto:info@plg.co.za" class="contact-link">
+                  info@plg.co.za
+                </a>
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-md-5" data-aos="fade-left">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h5>Call Us</h5>
+              <p>
+                <a href="tel:0710840814" class="contact-link">
+                  071 084 0814
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-4">
+      <div class="container">
+        <div class="text-center">
+          <p>&copy; 2025 Pula Legacy Group. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <button id="scrollToTop" class="scroll-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+
+      // Add smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        });
+      });
+
+      // Scroll to top functionality
+      const scrollToTopBtn = document.getElementById("scrollToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add("visible");
+        } else {
+          scrollToTopBtn.classList.remove("visible");
+        }
+      });
+
+      scrollToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Initialize testimonial carousel
+      const testimonialCarousel = new bootstrap.Carousel(document.getElementById('testimonialCarousel'), {
+        interval: 5000,
+        wrap: true,
+        pause: 'hover'
+      });
+    </script>
+  </body>
+</html>
